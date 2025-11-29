@@ -31,5 +31,41 @@ namespace mqlib {
         }
         serial.writeBuffer(buf)
     }
+    //% subcategory="mp3"
+    //% group='mp3'
+    //% block="Mp3停止播放音频"
+    export function Mp3StopPlaySound() {
+        serial.redirect(SerialPin.P0, SerialPin.P1, BaudRate.BaudRate9600)
+        let buf = pins.createBuffer(7)
+        buf[0] = 0xfe
+        buf[1] = 0x07
+        buf[2] = 0xff
+        buf[3] = 0xff
+        buf[4] = 0x04
+        buf[5] = 0x07
+        buf[6] = 0xbe
+        serial.writeBuffer(buf)
+    }
+    //% subcategory="mp3"
+    //% group='mp3'
+    //% block="Mp3暂停播放音频"
+    export function Mp3PausePlaySound() {
+        serial.redirect(SerialPin.P0, SerialPin.P1, BaudRate.BaudRate9600)
+        let buf = pins.createBuffer(7)
+        buf[0] = 0xfe
+        buf[1] = 0x07
+        buf[2] = 0xff
+        buf[3] = 0xff
+        buf[4] = 0x03
+        buf[5] = 0x06
+        buf[6] = 0xbe
+        serial.writeBuffer(buf)
+    }
+    //% subcategory="mp3"
+    //% group='mp3'
+    //% block="Mp3设置循环模式 单曲停止 单曲循环 全部循环"
+    export function Mp3SetLoopMode() {
+        
+    }
     
 }
