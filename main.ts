@@ -3,14 +3,17 @@
  */
 //% groups=['mp3']
 namespace mqlib {
+    //% subcategory="mp3"
+    //% group='mp3'
+    //% block="Mp3模块初始化"
     export function Mp3Init() {
         serial.redirect(SerialPin.P0, SerialPin.P1, BaudRate.BaudRate9600)
+        Mp3SetLoopMode(1)
     }
     //% subcategory="mp3"
     //% group='mp3'
     //% block="Mp3播放音频 $n"
     export function Mp3PlaySound(n: number) {
-        Mp3Init()
         let buf = pins.createBuffer(9)
         buf[0] = 0xfe
         buf[1] = 0x09
@@ -88,7 +91,6 @@ namespace mqlib {
     //% group='mp3'
     //% block="Mp3停止播放音频"
     export function Mp3StopPlaySound() {
-        Mp3Init()
         let buf = pins.createBuffer(7)
         buf[0] = 0xfe
         buf[1] = 0x07
@@ -103,7 +105,6 @@ namespace mqlib {
     //% group='mp3'
     //% block="Mp3暂停播放音频"
     export function Mp3PausePlaySound() {
-        Mp3Init()
         let buf = pins.createBuffer(7)
         buf[0] = 0xfe
         buf[1] = 0x07
@@ -118,7 +119,6 @@ namespace mqlib {
     //% group='mp3'
     //% block="Mp3设置循环模式 1单曲停止 2单曲循环 3全部循环 $t"
     export function Mp3SetLoopMode(t:number) {
-        Mp3Init()
         let buf = pins.createBuffer(10)
         buf[0] = 0xfe
         buf[1] = 0x0a
@@ -148,7 +148,6 @@ namespace mqlib {
     //% group='mp3'
     //% block="Mp3播放上一曲"
     export function Mp3PlayPrev() {
-        Mp3Init()
         let buf = pins.createBuffer(7)
         buf[0] = 0xfe
         buf[1] = 0x07
@@ -163,7 +162,6 @@ namespace mqlib {
     //% group='mp3'
     //% block="Mp3播放下一曲"
     export function Mp3PlayNext() {
-        Mp3Init()
         let buf = pins.createBuffer(7)
         buf[0] = 0xfe
         buf[1] = 0x07
