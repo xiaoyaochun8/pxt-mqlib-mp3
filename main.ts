@@ -3,12 +3,14 @@
  */
 //% groups=['mp3']
 namespace mqlib {
-
+    export function Mp3Init() {
+        serial.redirect(SerialPin.P0, SerialPin.P1, BaudRate.BaudRate9600)
+    }
     //% subcategory="mp3"
     //% group='mp3'
     //% block="Mp3播放音频 $n"
     export function Mp3PlaySound(n: number) {
-        serial.redirect(SerialPin.P0, SerialPin.P1, BaudRate.BaudRate9600)
+        Mp3Init()
         let buf = pins.createBuffer(9)
         buf[0] = 0xfe
         buf[1] = 0x09
@@ -35,7 +37,7 @@ namespace mqlib {
     //% group='mp3'
     //% block="Mp3停止播放音频"
     export function Mp3StopPlaySound() {
-        serial.redirect(SerialPin.P0, SerialPin.P1, BaudRate.BaudRate9600)
+        Mp3Init()
         let buf = pins.createBuffer(7)
         buf[0] = 0xfe
         buf[1] = 0x07
@@ -50,7 +52,7 @@ namespace mqlib {
     //% group='mp3'
     //% block="Mp3暂停播放音频"
     export function Mp3PausePlaySound() {
-        serial.redirect(SerialPin.P0, SerialPin.P1, BaudRate.BaudRate9600)
+        Mp3Init()
         let buf = pins.createBuffer(7)
         buf[0] = 0xfe
         buf[1] = 0x07
@@ -66,6 +68,36 @@ namespace mqlib {
     //% block="Mp3设置循环模式 单曲停止 单曲循环 全部循环"
     export function Mp3SetLoopMode() {
         
+    }
+    //% subcategory="mp3"
+    //% group='mp3'
+    //% block="Mp3播放上一曲"
+    export function Mp3PlayPrev() {
+        Mp3Init()
+        let buf = pins.createBuffer(7)
+        buf[0] = 0xfe
+        buf[1] = 0x07
+        buf[2] = 0xff
+        buf[3] = 0xff
+        buf[4] = 0x05
+        buf[5] = 0x08
+        buf[6] = 0xbe
+        serial.writeBuffer(buf)
+    }
+    //% subcategory="mp3"
+    //% group='mp3'
+    //% block="Mp3播放下一曲"
+    export function Mp3PlayNext() {
+        Mp3Init()
+        let buf = pins.createBuffer(7)
+        buf[0] = 0xfe
+        buf[1] = 0x07
+        buf[2] = 0xff
+        buf[3] = 0xff
+        buf[4] = 0x06
+        buf[5] = 0x09
+        buf[6] = 0xbe
+        serial.writeBuffer(buf)
     }
     
 }
