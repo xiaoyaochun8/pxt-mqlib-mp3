@@ -116,7 +116,7 @@ namespace mqlib {
     }
     //% subcategory="mp3"
     //% group='mp3'
-    //% block="Mp3设置循环模式 单曲停止 单曲循环 全部循环 $t"
+    //% block="Mp3设置循环模式 1单曲停止 2单曲循环 3全部循环 $t"
     export function Mp3SetLoopMode(t:number) {
         Mp3Init()
         let buf = pins.createBuffer(10)
