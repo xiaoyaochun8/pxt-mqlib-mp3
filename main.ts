@@ -116,9 +116,33 @@ namespace mqlib {
     }
     //% subcategory="mp3"
     //% group='mp3'
-    //% block="Mp3设置循环模式 单曲停止 单曲循环 全部循环"
-    export function Mp3SetLoopMode() {
-        
+    //% block="Mp3设置循环模式 单曲停止 单曲循环 全部循环 $t"
+    export function Mp3SetLoopMode(t:number) {
+        Mp3Init()
+        let buf = pins.createBuffer(10)
+        buf[0] = 0xfe
+        buf[1] = 0x0a
+        buf[2] = 0xff
+        buf[3] = 0xff
+        buf[4] = 0x18
+        buf[5] = 0x06
+        buf[6] = 0x00
+        buf[7] = 0x00
+        buf[8] = 0x24
+        buf[9] = 0xbe
+        //单曲不循环
+        if(t == 1){
+
+        //单曲循环
+        } else if (t == 2) {
+            buf[5] = 0x02
+            buf[8] = 0x20
+        //全部循环
+        } else if (t == 2) {
+            buf[5] = 0x01
+            buf[8] = 0x1f
+        }
+        serial.writeBuffer(buf)
     }
     //% subcategory="mp3"
     //% group='mp3'
