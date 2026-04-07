@@ -3,6 +3,16 @@
  */
 //% groups=['mp3']
 namespace mqlib {
+    
+    enum LoopMode {
+        //% block="单曲停止"
+        M1 = 1,
+        //% block="单曲循环"
+        M2 = 2,
+        //% block="全部循环"
+        M3 = 3
+    }
+    
     //% subcategory="mp3"
     //% group='mp3'
     //% block="Mp3模块初始化"
@@ -12,7 +22,7 @@ namespace mqlib {
     }
     //% subcategory="mp3"
     //% group='mp3'
-    //% block="Mp3播放音频 $n"
+    //% block="Mp3播放音乐序号 $n"
     export function Mp3PlaySound(n: number) {
         let buf = pins.createBuffer(9)
         buf[0] = 0xfe
@@ -89,7 +99,7 @@ namespace mqlib {
     }
     //% subcategory="mp3"
     //% group='mp3'
-    //% block="Mp3停止播放音频"
+    //% block="Mp3停止播放音乐"
     export function Mp3StopPlaySound() {
         let buf = pins.createBuffer(7)
         buf[0] = 0xfe
@@ -103,7 +113,7 @@ namespace mqlib {
     }
     //% subcategory="mp3"
     //% group='mp3'
-    //% block="Mp3暂停播放音频"
+    //% block="Mp3暂停播放音乐"
     export function Mp3PausePlaySound() {
         let buf = pins.createBuffer(7)
         buf[0] = 0xfe
@@ -117,8 +127,8 @@ namespace mqlib {
     }
     //% subcategory="mp3"
     //% group='mp3'
-    //% block="Mp3设置循环模式 1单曲停止 2单曲循环 3全部循环 $t"
-    export function Mp3SetLoopMode(t:number) {
+    //% block="Mp3设置循环模式 $mode"
+    export function Mp3SetLoopMode(mode:LoopMode) {
         let buf = pins.createBuffer(10)
         buf[0] = 0xfe
         buf[1] = 0x0a
@@ -131,14 +141,14 @@ namespace mqlib {
         buf[8] = 0x24
         buf[9] = 0xbe
         //单曲不循环
-        if(t == 1){
+        if(mode == 1){
 
         //单曲循环
-        } else if (t == 2) {
+        } else if (mode == 2) {
             buf[5] = 0x02
             buf[8] = 0x20
         //全部循环
-        } else if (t == 2) {
+        } else if (mode == 2) {
             buf[5] = 0x01
             buf[8] = 0x1f
         }
