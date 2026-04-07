@@ -15,7 +15,7 @@ namespace mqlib {
     
     //% subcategory="mp3"
     //% group='mp3'
-    //% block="Mp3模块初始化"
+    //% block="初始化Mp3模块"
     export function Mp3Init() {
         serial.redirect(SerialPin.P0, SerialPin.P1, BaudRate.BaudRate9600)
         Mp3SetLoopMode(1)
