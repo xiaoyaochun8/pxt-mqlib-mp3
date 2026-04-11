@@ -1,5 +1,6 @@
 /**
  * mqMp3 blocks
+ * 文字转语音 http://ai-speaker.net/
  */
 //% groups=['mp3']
 namespace mqlib {
