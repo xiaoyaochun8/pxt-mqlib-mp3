@@ -1,6 +1,8 @@
 /**
  * mqMp3 blocks
- * 文字转语音 http://ai-speaker.net/
+ * 文字转语音
+ * http://ai-speaker.net/
+ * https://www.ttsonline.cn/
  */
 //% groups=['mp3']
 namespace mqlib {
