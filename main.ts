@@ -7,7 +7,7 @@
 //% groups=['mp3']
 namespace mqlib {
     
-    enum LoopMode {
+    export enum LoopMode {
         //% block="单曲停止"
         M1 = 1,
         //% block="单曲循环"
