@@ -28,6 +28,7 @@ namespace mqlib {
     //% group='mp3'
     //% block="Mp3播放音乐 编号 $n"
     //% weight=99
+    //% n.min=1 n.max=65535 n.defl=1
     export function Mp3PlaySound(n: number) {
         let buf = pins.createBuffer(9)
         buf[0] = 0xfe
