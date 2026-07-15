@@ -15,6 +15,12 @@ namespace mqlib {
         //% block="全部循环"
         M3 = 3
     }
+    export enum MyMusicList {
+        //% block="小星星"
+        m1 = 1,
+        //% block="哈哈"
+        m2 = 2
+    }
     
     //% subcategory="mp3"
     //% group='mp3'
@@ -41,6 +47,13 @@ namespace mqlib {
         buf[7] = n + 12
         buf[8] = 0xbe
         serial.writeBuffer(buf)
+    }
+    //% subcategory="mp3"
+    //% group='mp3'
+    //% block="Mp3播放音乐 名称 $m"
+    //% weight=99
+    export function Mp3PlaySoundByName(m: MyMusicList) {
+        Mp3PlaySound(m)
     }
     //% subcategory="mp3"
     //% group='mp3'
